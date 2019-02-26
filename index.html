@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>cat clicker</title>
+  <style>
+    * {box-sizing: border-box;}
+    ul {padding: 0; margin: auto; list-style-type: none; justify-content: center}
+    li {text-align: center;}
+    .all {display: flex;}
+    .catarea {width: 90%; text-align: center;}
+    .catlist {width: 10%; text-align: center;}
+  </style>
+</head>
+<body>
+  <div class="all">
+
+    <div class="catarea">
+      <h2>Cat Display</h2>
+      <ul>
+        <li id="displayarea">
+        </li>
+      </ul>
+    </div>
+
+    <div class="catlist">
+      <h2>Cat List</h2>
+      <ul id="catlist">
+      </ul>
+    </div>
+  </div>
+
+
+
+  <script>
+    var catnames = ["Larry", "Barry", "Jerry", "Ferry", "Merry"]
+    for (var i = 0; i < catnames.length; i++) {
+      catname = "<li id='" + catnames[i] + "list'>" + catnames[i] + "</li>";
+      document.getElementById("catlist").innerHTML += catname;
+    }
+
+    document.getElementById("displayarea").innerHTML += "";
+    for (var i = 0; i < catnames.length; i++) {
+      catid = catnames[i] + "list";
+      catname = catnames[i]
+      elem = document.getElementById(catid);
+      elem.addEventListener('click', (function(cat) {
+        return function() {
+          catnam = "<h3>" + cat + "</h3>";
+          catimg = "<img src='" + cat + ".jpg' alt='" + cat + "' id='" + cat + "elem'>";
+          catclicks = "<p id='" + cat + "clicks'>0</p>";
+          document.getElementById("displayarea").innerHTML = catnam + catimg + catclicks;
+          newelem = document.getElementById(cat + "elem");
+          newelem.addEventListener('click', function() {
+            document.getElementById(cat + "clicks").innerHTML++;
+          }, false);
+        };
+      })(catname));
+    }
+
+
+  </script>
+
+
+
+
+</body>
+</html>
