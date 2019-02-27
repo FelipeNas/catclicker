@@ -26,43 +26,63 @@
 var model = [
   {
     catname: "Barry",
-    caturl: "images/barry",
-    catclicks: "0"
+    caturl: "images/barry.jpg",
+    catclicks: "0",
+    catid: "barryid"
   },
   {
     catname: "Farry",
-    caturl: "images/farry",
-    catclicks: "0"
+    caturl: "images/farry.jpg",
+    catclicks: "0",
+    catid: "farryid"
   },
   {
     catname: "Jerry",
-    caturl: "images/jerry",
-    catclicks: "0"
+    caturl: "images/jerry.jpg",
+    catclicks: "0",
+    catid: "jerryid"
   },
   {
     catname: "Larry",
-    caturl: "images/larry",
-    catclicks: "0"
+    caturl: "images/larry.jpg",
+    catclicks: "0",
+    catid: "larryid"
   },
   {
     catname: "Merry",
-    caturl: "images/merry",
-    catclicks: "0"
+    caturl: "images/merry.jpg",
+    catclicks: "0",
+    catid: "marryid"
   }
 ]
 
 var viewlist = {
   list: function(cats) {
     for (var i = 0; i < cats.length; i++) {
-      catname = "<li>" + cats[i].catname + "</li>"
-      document.getElementById("catlist").innerHTML += catname
+      var catname = "<li id=" + cats[i].catid + ">" + cats[i].catname + "</li>";
+      document.getElementById("catlist").innerHTML += catname;
     }
-  }
-}
-
-var viewcat = {
-
+  },
+  click: function(cats) {
+    for (var i = 0; i < cats.length; i++) {
+      var cat = cats[i]
+      var catid = cat.catid;
+      var elem = document.getElementById(catid);
+      elem.addEventListener('click', (function(cat) {
+        return function() {
+          document.getElementById("displayarea").innerHTML = "";
+          displayname = "<h3>" + cat.catname + "</h3>";
+          displayimage = "<img src=" + cat.caturl + ">";
+          displayclicker = "<p>" + cat.catclicks + "</p>";
+          document.getElementById("displayarea").innerHTML = displayname + displayimage + displayclicker;
+        };
+      })(cat));
+    }
+  },
 }
 
 var octupus = {
+  init: [viewlist.list(model), viewlist.click(model)]
 }
+
+octupus.init
