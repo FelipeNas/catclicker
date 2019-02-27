@@ -1,3 +1,4 @@
+// model
 var model = [
   {
     catname: "Barry",
@@ -31,13 +32,16 @@ var model = [
   }
 ]
 
+// view
 var view = {
+  // list all cats
   list: function(cats) {
     for (var i = 0; i < cats.length; i++) {
       var catname = "<li id=" + cats[i].catid + ">" + cats[i].catname + "</li>";
       document.getElementById("catlist").innerHTML += catname;
     }
   },
+  // display the cat when clicked
   displayer: function(cats) {
     for (var i = 0; i < cats.length; i++) {
       var cat = cats[i]
@@ -55,6 +59,7 @@ var view = {
       })(cat));
     }
   },
+  // counts when clicked the cat image
   clicker: function(cat) {
     elem = document.getElementById(cat.catid + "img")
     elem.addEventListener('click', function() {
@@ -64,8 +69,10 @@ var view = {
   }
 }
 
+// octupus
 var octupus = {
   init: [view.list(model), view.displayer(model)]
 }
 
+// start
 octupus.init
