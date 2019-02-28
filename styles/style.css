@@ -18,12 +18,15 @@ li {
 
 .catarea {
   width: 90%;
-  text-align:
-  center;
+  text-align:center;
   }
 
 .catlist {
   width: 10%;
   text-align:
   center;
+}
+
+#form {
+  display: none;
 }

@@ -30,11 +30,12 @@ var model = {
 }
 
 // View
-var view = {
+var viewcat = {
   // List all cats and display a cat it when clicked on its name
   list: function() {
     var cat;
     var cats = octopus.getCats();
+    document.getElementById("catlist").innerHTML = " "
     for (var i = 0; i < cats.length; i++) {
       cat = cats[i]
       elem = document.createElement("li");
@@ -45,7 +46,8 @@ var view = {
           document.getElementById("name").textContent = cat.catname;
           document.getElementById("image").src = cat.caturl;
           document.getElementById("counter").textContent = cat.catclicks;
-          octopus.clicker(cat)
+          octopus.currentCat = cat
+          octopus.clicker(octopus.currentCat)
         }
       })(cat))
       document.getElementById("catlist").appendChild(elem);
@@ -61,16 +63,37 @@ var view = {
   }
 }
 
+var viewform = {
+  showform: function() {
+    elem = document.getElementById("displayform")
+    elem.addEventListener("click", function(){
+      document.getElementById("form").style.display = "block";
+    })
+    document.getElementById("cancel").addEventListener("click", function(){
+      document.getElementById("form").style.display = "none";
+    })
+    document.getElementById("submit").addEventListener("click", function(){
+      cat = octopus.currentCat
+      cat.catname = document.getElementById("newname").value
+      cat.caturl = document.getElementById("newurl").value
+      cat.catclicks = document.getElementById("newclicks").value
+      octopus.init()
+    })
+  }
+}
+
 // Octopus
 var octopus = {
   init: function() {
-    view.list()
+    viewcat.list()
+    viewform.showform()
   },
   getCats: function() {
     return model.cats
   },
+  currentCat: null,
   clicker: function(cat) {
-    view.clicker(cat);
+    viewcat.clicker(cat);
   },
 }
 
