@@ -31,7 +31,7 @@ var model = {
 
 // View
 var view = {
-  // List all cats
+  // List all cats and display a cat it when clicked on its name
   list: function() {
     var cat;
     var cats = octopus.getCats();
@@ -41,16 +41,24 @@ var view = {
       elem.textContent = cat.catname;
       elem.addEventListener("click", (function(cat) {
         return function() {
-          document.getElementById("name").textContent = cat.catname
-          document.getElementById("image").src = cat.caturl
-          document.getElementById("counter").textContent = cat.catclicks
+          document.getElementById("displayarea").innerHTML = "<h3 id='name'></h3><img src='' id='image'><p id='counter'></p>";
+          document.getElementById("name").textContent = cat.catname;
+          document.getElementById("image").src = cat.caturl;
+          document.getElementById("counter").textContent = cat.catclicks;
+          octopus.clicker(cat)
         }
       })(cat))
       document.getElementById("catlist").appendChild(elem);
     }
   },
-  // Display the cat when clicked
   // Counts when clicked the cat image
+  clicker: function(cat) {
+    elem = document.getElementById("image");
+    elem.addEventListener("click", function() {
+      cat.catclicks++
+      document.getElementById("counter").textContent++
+    })
+  }
 }
 
 // Octopus
@@ -60,7 +68,10 @@ var octopus = {
   },
   getCats: function() {
     return model.cats
-  }
+  },
+  clicker: function(cat) {
+    view.clicker(cat);
+  },
 }
 
 // Start
