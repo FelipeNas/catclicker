@@ -3,42 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>Cat Clicker</title>
-  <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
-  <div class="content">
+  <div id="cat">
 
-
-    <!-- where the cat clicker will display -->
-    <div class="catarea">
-      <h2>Cat Display</h2>
-      <div id="displayarea">
-        <h3 id="name"></h3>
-        <img src="" id="image">
-        <p id="counter"></p>
-      </div>
-      <div>
-        <button id="displayform">admin</button>
-        <div>
-          <form id="form" onsubmit="return false;">
-            <p>New name <input type="text" size="30" id="newname" required></p>
-            <p>New url <input type="text" size="30" id="newurl" required></p>
-            <p>New clicks <input type="text" size="30" id="newclicks" required></p>
-            <p><input type="submit" value="cancel" id="cancel"><input type="submit" value="Save" id="submit"></p>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- where the cat list will display -->
-    <div class="catlist">
-      <h2>Cat List</h2>
-      <ul id="catlist">
-      </ul>
-    </div>
+      <h2 id="cat-name"></h2>
+      <div id="cat-count"></div>
+      <img id="cat-img" src="" alt="a cat">
 
   </div>
-
 <script src="scripts/script.js"></script>
 </body>
 </html>
